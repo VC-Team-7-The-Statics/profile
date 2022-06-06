@@ -1,0 +1,13 @@
+.requests-container {
+  & > .title {
+    font-weight: bolder;
+  }
+
+  & > .content {
+    margin-top: 40px;
+
+    .request + .request {
+      margin-top: 20px;
+    }
+  }
+}

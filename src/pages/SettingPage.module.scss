@@ -1,0 +1,9 @@
+.setting-container {
+  & > .title {
+    font-weight: bolder;
+  }
+
+  & > .content {
+    margin-top: 40px;
+  }
+}

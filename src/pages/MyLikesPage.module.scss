@@ -1,0 +1,32 @@
+.likes-container {
+  & > .title {
+    font-weight: bolder;
+  }
+
+  & > .content {
+    margin-top: 40px;
+
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+
+      .image-container {
+        display: inline-block;
+        width: calc(33.33%);
+        text-align: center;
+        margin-bottom: 30px;
+
+        a {
+          height: 100px;
+          width: 100px;
+          display: inline-block;
+        }
+
+        img {
+          height: 100px;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
