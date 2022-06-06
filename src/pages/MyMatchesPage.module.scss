@@ -7,15 +7,14 @@
     margin-top: 40px;
 
     .images {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      justify-content: space-between;
-      row-gap: 30px;
+      display: flex;
+      flex-wrap: wrap;
 
       .image-container {
         display: inline-block;
-        height: 100px;
-        width: 100px;
+        width: calc(33.33%);
+        text-align: center;
+        margin-bottom: 30px;
 
         a {
           display: inline-block;
