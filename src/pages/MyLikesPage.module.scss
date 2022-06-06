@@ -1,0 +1,31 @@
+.likes-container {
+  & > .title {
+    font-weight: bolder;
+  }
+
+  & > .content {
+    margin-top: 40px;
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: space-between;
+      row-gap: 30px;
+
+      .image-container {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+
+        a {
+          display: inline-block;
+        }
+
+        img {
+          height: 100px;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
