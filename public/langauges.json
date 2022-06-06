@@ -1,0 +1,17 @@
+[
+  {
+    "language": "javascript",
+    "image": "",
+    "stack": ["react", "vue", "express", "nodejs", "nestjs", "tensorflow"]
+  },
+  {
+    "language": "python",
+    "image": "",
+    "stack": ["django", "flask", "tensorflow"]
+  },
+  {
+    "language": "java",
+    "image": "",
+    "stack": ["spring"]
+  }
+]
