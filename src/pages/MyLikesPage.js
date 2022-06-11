@@ -1,100 +1,21 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import styles from "./MyLikesPage.module.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/user/userSlice";
 
 function MyLikesPage() {
+  const user = useSelector(selectUser);
+
   return (
     <div className={styles["likes-container"]}>
       <h1 className={styles.title}>좋아요 한 유저</h1>
       <div className={styles.content}>
         <ul className={styles["images"]}>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/1.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/2.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/3.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/4.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/5.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/6.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/7.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/8.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/9.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/10.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/women/11.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
+          {user.likes.map((user, i) => (
+            <li key={i} className={styles["image-container"]}>
+              <img src={user.image} alt={"profile image"} />
+            </li>
+          ))}
         </ul>
       </div>
     </div>

@@ -1,26 +1,82 @@
 import "./App.scss";
 import "./_reset.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import React from "react";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
 import MyLikesPage from "./pages/MyLikesPage";
 import MyMatchesPage from "./pages/MyMatchesPage";
 import RequestsPage from "./pages/RequestsPage";
-import SettingPage from "./pages/SettingPage";
+import { useDispatch } from "react-redux";
+import { useQuery } from "react-query";
+import axios from "axios";
+import ApiService from "./services/Api";
+import { setUser } from "./features/user/userSlice";
+
+const ApiInstance = new ApiService(axios);
 
 function App() {
-  const isLoggedIn = true;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoading } = useQuery("myProfile", ApiInstance.getProfile, {
+    staleTime: Infinity,
+    onSuccess: ({ data }) => {
+      if (!data.success) {
+        return navigate("/welcome");
+      }
+
+      const user = {
+        id: data.profile._id,
+        name: data.profile.name,
+        email: data.profile.email,
+        company: data.profile.company,
+        image: data.profile.image,
+        likes: data.profile.likes,
+        match: data.profile.match,
+        requests: data.profile.incomingCoffeeRequest,
+      };
+
+      dispatch(setUser(user));
+    },
+  });
+  // const { isLoading } = useQuery("auto-login", ApiInstance.login, {
+  //   onSuccess: ({ data }) => {
+  //     if (data.success) {
+  //       if (window.isNativeApp) {
+  //         window.ReactNativeWebView.postMessage(`token ${data.token}`);
+  //       }
+
+  //       const user = {
+  //         id: data.user._id,
+  //         name: data.user.name,
+  //         email: data.user.email,
+  //         image: data.user.image,
+  //         languages: data.user.languages,
+  //         expertise: data.user.expertise,
+  //         price: data.user.price,
+  //         likes: data.user.likes,
+  //         match: data.user.match,
+  //         location: data.user.location,
+  //       };
+
+  //       dispatch(setUser(user));
+  //     }
+  //   },
+  //   staleTime: Infinity,
+  // });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="container">
       <Routes>
-        <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<ProfilePage />} />
           <Route path="/my-likes" element={<MyLikesPage />} />
           <Route path="/my-matches" element={<MyMatchesPage />} />
           <Route path="/requests" element={<RequestsPage />} />
-          <Route path="/setting" element={<SettingPage />} />
         </Route>
         <Route path="/welcome" element={<h1>Welcome page</h1>} />
       </Routes>

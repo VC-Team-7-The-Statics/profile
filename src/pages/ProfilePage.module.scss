@@ -24,8 +24,9 @@
 }
 
 .images {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // justify-content: space-around;
 }
 
 // general
@@ -76,7 +77,7 @@
   position: relative;
   border-bottom: 1px solid black;
 
-  .request {
+  .requests {
     .name {
       display: inline-block;
     }
@@ -124,4 +125,9 @@
       width: 80px;
     }
   }
+}
+
+.expand {
+  position: absolute;
+  top: -50px;
 }
