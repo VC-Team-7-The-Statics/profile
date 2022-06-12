@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { RequestCard } from "@the-statics/shared-components";
 import styles from "./RequestsPage.module.scss";
 import { useSelector } from "react-redux";
