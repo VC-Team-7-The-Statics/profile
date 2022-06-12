@@ -1,100 +1,23 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import styles from "./MyMatchesPage.module.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/user/userSlice";
 
 function MyMatchesPage() {
+  const user = useSelector(selectUser);
+  const filteredMatches = user.match
+    .map((m) => m.couple.filter((c) => user.id !== c._id))
+    .flat();
+
   return (
     <div className={styles["likes-container"]}>
       <h1 className={styles.title}>매칭 된 유저</h1>
       <div className={styles.content}>
-        <ul className={styles["images"]}>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/1.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/2.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/3.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/4.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/5.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/6.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/7.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/8.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/9.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/10.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
-          <li className={styles["image-container"]}>
-            <a href="/">
-              <img
-                src="https://randomuser.me/api/portraits/men/11.jpg"
-                alt={"profile image"}
-              />
-            </a>
-          </li>
+        <ul className={styles.images}>
+          {filteredMatches.map((match, i) => (
+            <li key={i} className={styles["image-container"]}>
+              <img src={match.image} alt="profile" />
+            </li>
+          ))}
         </ul>
       </div>
     </div>

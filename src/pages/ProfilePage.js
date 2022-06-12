@@ -1,159 +1,107 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import styles from "./ProfilePage.module.scss";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectUser } from "../features/user/userSlice";
 
 function ProfilePage() {
+  const user = useSelector(selectUser);
+  const filteredMatches = user.match
+    .map((m) => m.couple.filter((c) => user.id !== c._id))
+    .flat();
+
   return (
     <div className={styles["profile-container"]}>
       <div className={styles.profile}>
         <div className={styles["profile-image"]}>
-          <img
-            src="https://randomuser.me/api/portraits/men/3.jpg"
-            alt={"profile image"}
-          />
+          <img src={user.image} alt="profile" />
         </div>
         <div className={styles.content}>
-          <h2 className={styles.username}>stefmax@gmail.com</h2>
+          <h2 className={styles.username}>{user.name}</h2>
           <div className={styles.work}>
             <span className="at">@</span>
-            와이어드 컴퍼니
+            {user.company}
           </div>
         </div>
-        <a href="/" className={styles.setting}>
-          설정
-        </a>
       </div>
-
       <div className={styles["requests-container"]}>
         <h2 className={styles.title}>
           커피챗 요청
           <span className={styles.count}>
-            (<span className={styles.number}>5</span>
+            (<span className={styles.number}>{user.requests.length}</span>
           </span>
           )
         </h2>
         <div className={styles.content}>
           <ul className={styles.requests}>
-            <li className={styles.request}>
-              <a href="/">
-                <h2 className={styles.name}>공유정</h2>
-                <span>님의 요청</span>
-              </a>
-            </li>
-            <li className={styles.request}>
-              <a href="/">
-                <h2 className={styles.name}>공희정</h2>
-                <span>님의 요청</span>
-              </a>
-            </li>
-            <li className={styles.request}>
-              <a href="/">
-                <h2 className={styles.name}>공유좀</h2>
-                <span>님의 요청</span>
-              </a>
-            </li>
+            {user.requests.map((request, i) =>
+              i < 3 ? (
+                <>
+                  <h2 className={styles.name}>{request.from.name}</h2>
+                  <span>님의 요청</span>
+                </>
+              ) : (
+                ""
+              )
+            )}
           </ul>
         </div>
-        <a href="/" className={styles.more}>
-          더보기
-        </a>
+        <div className="expand">
+          <Link to="/requests" className={styles.request}>
+            <span>내용 보기</span>
+          </Link>
+        </div>
       </div>
 
       <div className={styles.matches}>
         <h2 className={styles.title}>
           매칭된 유저
           <span className={styles.count}>
-            (<span className={styles.number}>6</span>
+            (<span className={styles.number}>{filteredMatches.length}</span>
           </span>
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/1.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/2.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/3.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/4.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
+          <ul className={styles.images}>
+            {filteredMatches.map((match, i) =>
+              i <= 3 ? (
+                <li key={i} className={styles["image-container"]}>
+                  <img src={match.image} alt="profile" />
+                </li>
+              ) : (
+                ""
+              )
+            )}
           </ul>
         </div>
-        <a href="/" className={styles.more}>
-          더보기
-        </a>
+        <div className="expand">
+          <Link to="/my-matches">더보기</Link>
+        </div>
       </div>
 
       <div className={styles.likes}>
         <h2 className={styles.title}>
           좋아요 한 유저
           <span className={styles.count}>
-            (<span className={styles.number}>7</span>
+            (<span className={styles.number}>{user.likes.length}</span>
           </span>
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/5.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/6.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/7.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
-            <li className={styles["image-container"]}>
-              <a href="/">
-                <img
-                  src="https://randomuser.me/api/portraits/women/8.jpg"
-                  alt={"profile image"}
-                />
-              </a>
-            </li>
+          <ul className={styles.images}>
+            {user.likes.map((user, i) =>
+              i <= 3 ? (
+                <li className={styles["image-container"]}>
+                  <img src={user.image} alt="profile" />
+                </li>
+              ) : (
+                ""
+              )
+            )}
           </ul>
         </div>
-        <a href="/" className={styles.more}>
-          더보기
-        </a>
+        <div className="expand">
+          <Link to="/my-likes">더보기</Link>
+        </div>
       </div>
     </div>
   );
