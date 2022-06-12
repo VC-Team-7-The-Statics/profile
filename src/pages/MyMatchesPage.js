@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import styles from "./MyMatchesPage.module.scss";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/user/userSlice";
@@ -13,10 +12,10 @@ function MyMatchesPage() {
     <div className={styles["likes-container"]}>
       <h1 className={styles.title}>매칭 된 유저</h1>
       <div className={styles.content}>
-        <ul className={styles["images"]}>
+        <ul className={styles.images}>
           {filteredMatches.map((match, i) => (
             <li key={i} className={styles["image-container"]}>
-              <img src={match.image} alt={"profile image"} />
+              <img src={match.image} alt="profile" />
             </li>
           ))}
         </ul>

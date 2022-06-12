@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import styles from "./ProfilePage.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ function ProfilePage() {
     <div className={styles["profile-container"]}>
       <div className={styles.profile}>
         <div className={styles["profile-image"]}>
-          <img src={user.image} alt={"profile image"} />
+          <img src={user.image} alt="profile" />
         </div>
         <div className={styles.content}>
           <h2 className={styles.username}>{user.name}</h2>
@@ -35,7 +34,7 @@ function ProfilePage() {
         <div className={styles.content}>
           <ul className={styles.requests}>
             {user.requests.map((request, i) =>
-              i <= 3 ? (
+              i < 3 ? (
                 <>
                   <h2 className={styles.name}>{request.from.name}</h2>
                   <span>님의 요청</span>
@@ -47,7 +46,7 @@ function ProfilePage() {
           </ul>
         </div>
         <div className="expand">
-          <Link to={"/requests"} className={styles.request}>
+          <Link to="/requests" className={styles.request}>
             <span>내용 보기</span>
           </Link>
         </div>
@@ -62,11 +61,11 @@ function ProfilePage() {
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
+          <ul className={styles.images}>
             {filteredMatches.map((match, i) =>
               i <= 3 ? (
                 <li key={i} className={styles["image-container"]}>
-                  <img src={match.image} alt={"profile image"} />
+                  <img src={match.image} alt="profile" />
                 </li>
               ) : (
                 ""
@@ -88,11 +87,11 @@ function ProfilePage() {
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
+          <ul className={styles.images}>
             {user.likes.map((user, i) =>
               i <= 3 ? (
                 <li className={styles["image-container"]}>
-                  <img src={user.image} alt="profile image" />
+                  <img src={user.image} alt="profile" />
                 </li>
               ) : (
                 ""

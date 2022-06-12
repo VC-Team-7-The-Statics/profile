@@ -15,6 +15,8 @@ class ApiService {
   login = (body) => this.API.post("/auth/login", { ...body });
 
   getProfile = () => this.API.get("/user/profile");
+
+  initiateChatting = (body) => this.API.post("/chat/create", { ...body });
 }
 
 export default ApiService;
