@@ -5,12 +5,10 @@ const initialState = {
   name: "",
   email: "",
   company: "",
-  location: {},
   image: "",
-  price: "",
   likes: [],
-  liked: [],
   match: [],
+  requests: [],
 };
 
 const userSlice = createSlice({

@@ -12,10 +12,10 @@ function MyMatchesPage() {
     <div className={styles["likes-container"]}>
       <h1 className={styles.title}>매칭 된 유저</h1>
       <div className={styles.content}>
-        <ul className={styles["images"]}>
+        <ul className={styles.images}>
           {filteredMatches.map((match, i) => (
             <li key={i} className={styles["image-container"]}>
-              <img src={match.image} alt={"profile"} />
+              <img src={match.image} alt="profile" />
             </li>
           ))}
         </ul>

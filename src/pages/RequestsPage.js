@@ -13,10 +13,13 @@ const ApiInstance = new ApiService(axios);
 
 function RequestsPage() {
   const navigate = useNavigate();
+
   const user = useSelector(selectUser);
+
   const [error, setError] = useState("");
-  const onChatStartClick = (id) => () => {
-    const attendants = { attendants: [id, user.id] };
+
+  const onChatStartClick = (requesterId) => () => {
+    const attendants = { attendants: [requesterId, user.id] };
 
     mutate(attendants);
   };

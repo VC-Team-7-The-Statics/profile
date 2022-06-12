@@ -19,7 +19,6 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading } = useQuery("myProfile", ApiInstance.getProfile, {
-    staleTime: Infinity,
     onSuccess: ({ data }) => {
       if (!data.success) {
         return navigate("/welcome");

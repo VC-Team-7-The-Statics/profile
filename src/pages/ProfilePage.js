@@ -13,7 +13,7 @@ function ProfilePage() {
     <div className={styles["profile-container"]}>
       <div className={styles.profile}>
         <div className={styles["profile-image"]}>
-          <img src={user.image} alt={"profile"} />
+          <img src={user.image} alt="profile" />
         </div>
         <div className={styles.content}>
           <h2 className={styles.username}>{user.name}</h2>
@@ -46,7 +46,7 @@ function ProfilePage() {
           </ul>
         </div>
         <div className="expand">
-          <Link to={"/requests"} className={styles.request}>
+          <Link to="/requests" className={styles.request}>
             <span>내용 보기</span>
           </Link>
         </div>
@@ -61,11 +61,11 @@ function ProfilePage() {
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
+          <ul className={styles.images}>
             {filteredMatches.map((match, i) =>
               i <= 3 ? (
                 <li key={i} className={styles["image-container"]}>
-                  <img src={match.image} alt={"profile"} />
+                  <img src={match.image} alt="profile" />
                 </li>
               ) : (
                 ""
@@ -87,7 +87,7 @@ function ProfilePage() {
           )
         </h2>
         <div className={styles.content}>
-          <ul className={styles["images"]}>
+          <ul className={styles.images}>
             {user.likes.map((user, i) =>
               i <= 3 ? (
                 <li className={styles["image-container"]}>
