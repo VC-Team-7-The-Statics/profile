@@ -1,5 +1,4 @@
 import "./App.scss";
-import "./_reset.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import React from "react";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
