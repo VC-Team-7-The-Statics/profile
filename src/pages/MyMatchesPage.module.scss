@@ -1,28 +1,54 @@
 .likes-container {
+  padding: 20px 10px;
+
   & > .title {
     font-weight: bolder;
+    font-size: 20px;
   }
 
   & > .content {
-    margin-top: 40px;
+    margin-top: 20px;
 
     .images {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
 
       .image-container {
         display: inline-block;
-        width: calc(33.33%);
-        text-align: center;
-        margin-bottom: 30px;
+        width: calc(50% - 5px);
 
-        a {
-          display: inline-block;
+        .image-wrapper {
+          position: relative;
+
+          .name {
+            position: absolute;
+            color: #fff;
+            bottom: 10px;
+            left: 10px;
+            font-weight: bolder;
+            font-size: 17px;
+            z-index: 3;
+          }
+        }
+
+        .image-wrapper::after {
+          content: "";
+          display: block;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          box-shadow: inset 0px -30px 10px rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
         }
 
         img {
-          height: 100px;
-          width: 100px;
+          height: 200px;
+          width: 100%;
+          border-radius: 10px;
         }
       }
     }

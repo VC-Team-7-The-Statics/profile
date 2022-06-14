@@ -1,4 +1,4 @@
-import { RequestCard, Button02 } from "@the-statics/shared-components";
+/* eslint-disable no-unused-vars */
 import styles from "./RequestsPage.module.scss";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/user/userSlice";
@@ -7,6 +7,7 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import ApiService from "../services/Api";
 import { useNavigate } from "react-router-dom";
+import { Button02 } from "@the-statics/shared-components";
 
 const ApiInstance = new ApiService(axios);
 
@@ -46,18 +47,22 @@ function RequestsPage() {
         <ul className={styles.requests}>
           {user.requests.map((request, i) => (
             <li key={i} className={styles.request}>
-              <RequestCard
-                className={styles["request-card"]}
-                requester={request.from.name}
-                title={request.title}
-                content={request.content}
-              />
-              <Button02
-                type="submit"
-                onClick={onChatStartClick(request.from._id)}
-              >
-                대화 신청
-              </Button02>
+              <div className={styles["request-card"]}>
+                <details className={styles.request}>
+                  <summary className={styles.title}>{request.title}</summary>
+                  <p className={styles.content}>
+                    {request.content}
+                    <div className={styles.requester}>
+                      <span className={styles.name}>
+                        {" "}
+                        from.{request.from.name}
+                      </span>
+                    </div>
+                  </p>
+                </details>
+                <Button02 onClick={onChatStartClick}>대화 신청하기</Button02>
+                {/* <div className={styles["button-container"]}>대화 신청하기</div> */}
+              </div>
             </li>
           ))}
         </ul>
