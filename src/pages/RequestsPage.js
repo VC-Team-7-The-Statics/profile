@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { RequestCard, Button02 } from "@the-statics/shared-components";
 import styles from "./RequestsPage.module.scss";
 import { useSelector } from "react-redux";
@@ -63,6 +62,7 @@ function RequestsPage() {
           ))}
         </ul>
       </div>
+      {error && <div>{error}</div>}
     </div>
   );
 }
