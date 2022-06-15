@@ -101,8 +101,7 @@ function ProfilePage() {
           {!user.likes.length && (
             <div className={styles["notification-container"]}>
               <p className={styles.notification}>
-                좋아요한 사람이 아직 없습니다. 먼저 자신있게 호감 표시를 해보는
-                게 어떨까요?
+                좋아요한 사람이 아직 없습니다.
               </p>
             </div>
           )}
