@@ -1,13 +1,14 @@
-/* eslint-disable no-unused-vars */
 import styles from "./RequestsPage.module.scss";
 import { useSelector } from "react-redux";
-import { selectUser } from "../features/user/userSlice";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import axios from "axios";
-import ApiService from "../services/Api";
 import { useNavigate } from "react-router-dom";
-import { Button02 } from "@the-statics/shared-components";
+
+import { selectUser } from "../features/user/userSlice";
+import ApiService from "../services/Api";
+import Header from "../components/Header";
+import RequestCard from "../components/RequestCard";
 
 const ApiInstance = new ApiService(axios);
 
@@ -18,7 +19,7 @@ function RequestsPage() {
 
   const [error, setError] = useState("");
 
-  const onChatStartClick = (requesterId) => () => {
+  const handleClick = (requesterId) => () => {
     const attendants = { attendants: [requesterId, user.id] };
 
     mutate(attendants);
@@ -42,30 +43,23 @@ function RequestsPage() {
 
   return (
     <div className={styles["requests-container"]}>
-      <h1 className={styles.title}>커피챗 요청</h1>
+      <Header title="커피챗 요청" />
       <div className={styles.content}>
-        <ul className={styles.requests}>
-          {user.requests.map((request, i) => (
-            <li key={i} className={styles.request}>
-              <div className={styles["request-card"]}>
-                <details className={styles.request}>
-                  <summary className={styles.title}>{request.title}</summary>
-                  <p className={styles.content}>
-                    {request.content}
-                    <div className={styles.requester}>
-                      <span className={styles.name}>
-                        {" "}
-                        from.{request.from.name}
-                      </span>
-                    </div>
-                  </p>
-                </details>
-                <Button02 onClick={onChatStartClick}>대화 신청하기</Button02>
-                {/* <div className={styles["button-container"]}>대화 신청하기</div> */}
-              </div>
-            </li>
-          ))}
-        </ul>
+        {user.requests.length ? (
+          <ul className={styles.requests}>
+            {user.requests.map((request, i) => (
+              <RequestCard
+                name={request.from.name}
+                title={request.title}
+                content={request.content}
+                key={i}
+                onClick={handleClick(request.from._id)}
+              />
+            ))}
+          </ul>
+        ) : (
+          <span>아직 커피챗 요청이 없습니다.</span>
+        )}
       </div>
       {error && <div>{error}</div>}
     </div>
