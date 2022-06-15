@@ -1,6 +1,20 @@
 .requests-container {
-  & > .title {
-    font-weight: bolder;
+  padding: 20px 10px;
+
+  & > .title-container {
+    display: flex;
+    align-items: center;
+
+    .title {
+      display: inline-block;
+      font-weight: bolder;
+      font-size: 20px;
+    }
+
+    img {
+      margin-right: 10px;
+      width: 25px;
+    }
   }
 
   & > .content {
