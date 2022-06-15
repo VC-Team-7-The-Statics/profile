@@ -11,6 +11,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import ApiService from "./services/Api";
 import { setUser } from "./features/user/userSlice";
+import CoffeeLoading from "./pages/CoffeeLoading";
 
 const ApiInstance = new ApiService(axios);
 
@@ -39,7 +40,7 @@ function App() {
   });
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <CoffeeLoading />;
   }
 
   return (
