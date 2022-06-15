@@ -12,12 +12,15 @@ import axios from "axios";
 import ApiService from "./services/Api";
 import { setUser } from "./features/user/userSlice";
 import CoffeeLoading from "./pages/CoffeeLoading";
+import RedirectPage from "./pages/RedirectPage";
 
 const ApiInstance = new ApiService(axios);
 
 function App() {
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
   const { isLoading } = useQuery("myProfile", ApiInstance.getProfile, {
     onSuccess: ({ data }) => {
       if (!data.success) {
@@ -51,6 +54,7 @@ function App() {
           <Route path="/my-likes" element={<MyLikesPage />} />
           <Route path="/my-matches" element={<MyMatchesPage />} />
           <Route path="/requests" element={<RequestsPage />} />
+          <Route path="/chat/:roomId" element={<RedirectPage />} />
         </Route>
         <Route path="/welcome" element={<h1>Welcome page</h1>} />
       </Routes>
