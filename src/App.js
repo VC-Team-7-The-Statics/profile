@@ -1,17 +1,17 @@
 import "./App.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useQuery } from "react-query";
+import axios from "axios";
+
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
 import MyLikesPage from "./pages/MyLikesPage";
 import MyMatchesPage from "./pages/MyMatchesPage";
 import RequestsPage from "./pages/RequestsPage";
-import { useDispatch } from "react-redux";
-import { useQuery } from "react-query";
-import axios from "axios";
 import ApiService from "./services/Api";
 import { setUser } from "./features/user/userSlice";
-import RedirectPage from "./pages/RedirectPage";
 
 const ApiInstance = new ApiService(axios);
 
@@ -53,7 +53,6 @@ function App() {
           <Route path="/my-likes" element={<MyLikesPage />} />
           <Route path="/my-matches" element={<MyMatchesPage />} />
           <Route path="/requests" element={<RequestsPage />} />
-          <Route path="/chat/:roomId" element={<RedirectPage />} />
         </Route>
         <Route path="/welcome" element={<h1>Welcome page</h1>} />
       </Routes>
