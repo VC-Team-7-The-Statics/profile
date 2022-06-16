@@ -1,10 +1,12 @@
 import styles from "./ProfilePage.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { selectUser } from "../features/user/userSlice";
 
 function ProfilePage() {
   const user = useSelector(selectUser);
+
   const filteredMatches = user.match
     .map((m) => m.couple.filter((c) => user.id !== c._id))
     .flat();

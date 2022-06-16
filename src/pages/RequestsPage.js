@@ -33,7 +33,22 @@ function RequestsPage() {
           return setError(data.message);
         }
 
-        navigate(`/chat/${data.roomId}`);
+        if (window.isNativeApp) {
+          const requesterId = data.attendants.filter(
+            (attendant) => attendant !== user.id
+          )[0];
+
+          const link = {
+            type: "CHATROOM_FROM_PROFILE",
+            userId: user.id,
+            roomId: data.roomId,
+            friendId: requesterId,
+          };
+
+          window.ReactNativeWebView.postMessage(`${JSON.stringify(link)}`);
+        }
+
+        navigate("/");
       },
       onError: () => {
         setError("네트워크 요청을 실패했습니다.");
