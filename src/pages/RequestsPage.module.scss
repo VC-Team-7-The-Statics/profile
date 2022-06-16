@@ -1,0 +1,40 @@
+.requests-container {
+  position: relative;
+  padding: 0px 20px;
+  min-height: calc(100vh - 100px);
+
+  & > .title-container {
+    display: flex;
+    align-items: center;
+
+    .title {
+      font-weight: bolder;
+      font-size: 30px;
+    }
+
+    img {
+      margin-right: 10px;
+      width: 25px;
+    }
+  }
+
+  & > .content {
+    margin-top: 40px;
+    height: 100%;
+
+    .request + .request {
+      margin-top: 20px;
+    }
+  }
+
+  .notification-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    font-size: 18px;
+    color: rgb(75, 75, 75);
+  }
+}

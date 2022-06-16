@@ -1,0 +1,33 @@
+.image-container {
+  .image-wrapper {
+    position: relative;
+
+    .name {
+      position: absolute;
+      color: #fff;
+      bottom: 10px;
+      left: 10px;
+      font-weight: bolder;
+      font-size: 17px;
+      z-index: 2;
+    }
+  }
+
+  .image-wrapper::after {
+    content: "";
+    display: block;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: inset 0px -30px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  img {
+    height: 200px;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
