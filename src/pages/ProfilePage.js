@@ -24,7 +24,7 @@ function ProfilePage() {
         </div>
       </div>
       <div className={styles["requests-container"]}>
-        <h2 className={styles.title}>
+        <h2 className={styles.subtitle}>
           커피챗 요청
           <span className={styles.count}>
             (<span className={styles.number}>{user.requests.length}</span>
@@ -59,7 +59,7 @@ function ProfilePage() {
         </div>
       </div>
       <div className={styles.matches}>
-        <h2 className={styles.title}>
+        <h2 className={styles.subtitle}>
           나랑 매칭된 사람들
           <span className={styles.count}>
             (<span className={styles.number}>{filteredMatches.length}</span>
@@ -90,7 +90,7 @@ function ProfilePage() {
         </div>
       </div>
       <div className={styles.likes}>
-        <h2 className={styles.title}>
+        <h2 className={styles.subtitle}>
           내가 좋아하는 사람들
           <span className={styles.count}>
             (<span className={styles.number}>{user.likes.length}</span>

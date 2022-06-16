@@ -5,12 +5,8 @@ function Header({ title }) {
   const navigate = useNavigate();
 
   return (
-    <div className={styles["title-container"]}>
-      <img
-        src="/icons/back-button.png"
-        alt="back"
-        onClick={() => navigate(-1)}
-      />
+    <div className={styles["title-container"]} onClick={() => navigate(-1)}>
+      <img src="/icons/back-button.png" alt="back" />
       <h1 className={styles.title}>{title}</h1>
     </div>
   );
