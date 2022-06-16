@@ -14,7 +14,7 @@ function ProfilePage() {
   return (
     <div className={styles["profile-container"]}>
       <div className={styles.profile}>
-        <div className={styles["profile-image"]}>
+        <div className={styles["profile-image"]} onClick={REMOVE_TOKEN}>
           <img src={user.image} alt="profile" />
         </div>
         <div className={styles.content}>
@@ -126,5 +126,11 @@ function ProfilePage() {
     </div>
   );
 }
+
+const REMOVE_TOKEN = () => {
+  if (window.isNativeApp) {
+    window.ReactNativeWebView.postMessage(`token broken-jwt`);
+  }
+};
 
 export default ProfilePage;
