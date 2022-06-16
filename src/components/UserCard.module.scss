@@ -1,7 +1,4 @@
 .image-container {
-  display: inline-block;
-  width: calc(50% - 5px);
-
   .image-wrapper {
     position: relative;
 
@@ -19,7 +16,7 @@
   .image-wrapper::after {
     content: "";
     display: block;
-    height: 100%;
+    height: 200px;
     position: absolute;
     top: 0;
     left: 0;

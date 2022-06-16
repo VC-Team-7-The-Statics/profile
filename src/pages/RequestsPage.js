@@ -73,7 +73,9 @@ function RequestsPage() {
             ))}
           </ul>
         ) : (
-          <span>아직 커피챗 요청이 없습니다.</span>
+          <div className={styles["notification-container"]}>
+            <p className={styles.notification}>아직 커피챗 요청이 없습니다.</p>
+          </div>
         )}
       </div>
       {error && <div>{error}</div>}
