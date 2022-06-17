@@ -22,10 +22,11 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const { isLoading } = useQuery("myProfile", ApiInstance.getProfile, {
+  const { isLoading, refetch } = useQuery("myProfile", ApiInstance.getProfile, {
     onSuccess: ({ data }) => {
       if (!data.success) {
-        return navigate("/welcome");
+        refetch();
+        return navigate("/welcome", { replace: true });
       }
 
       const user = {
