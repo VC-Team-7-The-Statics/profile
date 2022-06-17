@@ -11,7 +11,7 @@ function WelcomePage() {
 
   useEffect(() => {
     if (user.name) {
-      navigate("/");
+      navigate("/", { replace: true });
     }
   }, [navigate, user.name]);
 
