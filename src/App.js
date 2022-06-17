@@ -13,6 +13,7 @@ import RequestsPage from "./pages/RequestsPage";
 import ApiService from "./services/Api";
 import { setUser } from "./features/user/userSlice";
 import CoffeeLoading from "./pages/CoffeeLoading";
+import WelcomePage from "./pages/WelcomePage";
 
 const ApiInstance = new ApiService(axios);
 
@@ -21,10 +22,11 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const { isLoading } = useQuery("myProfile", ApiInstance.getProfile, {
+  const { isLoading, refetch } = useQuery("myProfile", ApiInstance.getProfile, {
     onSuccess: ({ data }) => {
       if (!data.success) {
-        return navigate("/welcome");
+        refetch();
+        return navigate("/welcome", { replace: true });
       }
 
       const user = {
@@ -55,7 +57,7 @@ function App() {
           <Route path="/my-matches" element={<MyMatchesPage />} />
           <Route path="/requests" element={<RequestsPage />} />
         </Route>
-        <Route path="/welcome" element={<h1>Welcome page</h1>} />
+        <Route path="/welcome" element={<WelcomePage />} />
       </Routes>
     </div>
   );
