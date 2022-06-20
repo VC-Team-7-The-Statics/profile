@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { selectUser } from "../features/user/userSlice";
 import ApiService from "../services/Api";
 import Header from "../components/Header";
-import RequestCard from "../components/RequestCard";
+import { RequestCard } from "@the-statics/shared-components";
 
 const ApiInstance = new ApiService(axios);
 
@@ -63,13 +63,14 @@ function RequestsPage() {
         {user.requests.length ? (
           <ul className={styles.requests}>
             {user.requests.map((request, i) => (
-              <RequestCard
-                name={request.from.name}
-                title={request.title}
-                content={request.content}
-                key={i}
-                onClick={handleClick(request.from._id)}
-              />
+              <li key={i}>
+                <RequestCard
+                  name={request.from.name}
+                  title={request.title}
+                  content={request.content}
+                  onClick={handleClick(request.from._id)}
+                />
+              </li>
             ))}
           </ul>
         ) : (

@@ -1,5 +1,5 @@
-import styles from "./MyLikesPage.module.scss";
 import { useSelector } from "react-redux";
+import styles from "./MyLikesPage.module.scss";
 
 import { selectUser } from "../features/user/userSlice";
 import Header from "../components/Header";
@@ -15,7 +15,9 @@ function MyLikesPage() {
         {user.likes.length ? (
           <ul className={styles.images}>
             {user.likes.map((user, i) => (
-              <UserCard name={user.name} image={user.image} key={i} />
+              <li key={i}>
+                <UserCard name={user.name} image={user.image} />
+              </li>
             ))}
           </ul>
         ) : (
