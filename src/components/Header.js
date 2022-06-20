@@ -1,5 +1,6 @@
 import styles from "./Header.module.scss";
 import { useNavigate } from "react-router-dom";
+import { Title } from "@the-statics/shared-components";
 
 function Header({ title }) {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ function Header({ title }) {
   return (
     <div className={styles["title-container"]} onClick={() => navigate(-1)}>
       <img src="/icons/back-button.png" alt="back" />
-      <h1 className={styles.title}>{title}</h1>
+      <Title value={title} />
     </div>
   );
 }
